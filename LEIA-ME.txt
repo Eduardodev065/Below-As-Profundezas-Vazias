@@ -1,0 +1,15 @@
+BELOW — AS PROFUNDEZAS VAZIAS
+
+INICIAR
+Abra Below.exe. Mantenha index.html e a pasta assets ao lado do executável.
+
+GAMEPLAY
+Explore a masmorra em visão de cima, em pixel art. Aproxime-se dos monstros para iniciar combates por turnos. Derrote as criaturas e desça para o próximo andar.
+
+CONTROLES
+WASD ou setas: mover
+Direcional na tela: mover
+Espaço: atacar durante a batalha
+Q: habilidade da classe
+G: defender durante a batalha
+Use os botões na tela para atacar, usar habilidade e defender.
