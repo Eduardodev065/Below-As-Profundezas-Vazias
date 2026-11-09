@@ -1,0 +1,20 @@
+{
+  "name": "below",
+  "version": "0.2.0",
+  "description": "Below — As Cinzas do Juramento",
+  "main": "main.js",
+  "scripts": { "start": "electron .", "dist": "electron-builder --win portable" },
+  "devDependencies": { "electron": "33.2.1", "electron-builder": "25.1.8" },
+  "build": {
+    "appId": "com.below.cinzas",
+    "productName": "Below",
+    "files": ["main.js", "preload.js", "index.html", "assets/**/*"],
+    "extraResources": [
+      { "from": "game/python", "to": "game/python" },
+      { "from": "runtime/python", "to": "runtime/python" },
+      { "from": "runtime/java", "to": "runtime/java" },
+      { "from": "game-engine.jar", "to": "game-engine.jar" }
+    ],
+    "win": { "target": "portable", "artifactName": "Below.exe" }
+  }
+}
