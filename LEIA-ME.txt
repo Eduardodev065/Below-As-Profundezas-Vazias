@@ -1,15 +1,28 @@
-BELOW — AS PROFUNDEZAS VAZIAS
+BELOW — AS CINZAS DO JURAMENTO
 
-INICIAR
-Abra Below.exe. Mantenha index.html e a pasta assets ao lado do executável.
+JOGO
+- O jogo roda em Electron, em tela cheia, sem abrir o navegador.
+- O pacote independente inclui uma cópia portátil do Python e um runtime Java reduzido.
+- Python planeja a geração procedural das camadas (tamanho, dificuldade, encontros e posições).
+- Java roda como processo de gameplay e calcula movimento/fases/eventos dos chefes.
+- Electron/JavaScript desenha o jogo, recebe controles e aplica colisões e efeitos visuais.
+- Se o jogo for aberto diretamente como página no navegador, usa o gerador e a IA de chefes
+  de reserva em JavaScript; a integração Python/Java depende do aplicativo Electron empacotado.
 
-GAMEPLAY
-Explore a masmorra em visão de cima, em pixel art. Aproxime-se dos monstros para iniciar combates por turnos. Derrote as criaturas e desça para o próximo andar.
+GERAR O EXECUTÁVEL NO WINDOWS
+Execute build-windows.bat. É necessário Node.js 20+, JDK 17+ (incluindo javac e jlink)
+e internet durante a compilação para baixar Electron e o Python portátil. Os jogadores
+recebem o runtime dentro do Below.exe e não precisam instalar Python ou Java.
+O executável fica em dist\Below.exe.
+
+Também existe um workflow de GitHub Actions em .github/workflows/build-windows.yml.
+Depois de executado, baixe o artefato Below-Windows na página Actions do repositório.
 
 CONTROLES
-WASD ou setas: mover
-Direcional na tela: mover
-Espaço: atacar durante a batalha
-Q: habilidade da classe
-G: defender durante a batalha
-Use os botões na tela para atacar, usar habilidade e defender.
+WASD/setas mover | J/espaço atacar | Q habilidade | Shift esquiva | E interagir
+M mapa | F/F11 tela cheia/janela | Esc/P pausa
+
+ESTADO ATUAL
+Este repositório contém o código-fonte e a receita de build. Não declarar o Below.exe
+existente na pasta como build independente: ele é um launcher antigo. O pacote atualizado
+precisa ser produzido pelo build-windows.bat ou pelo workflow antes de distribuição.
