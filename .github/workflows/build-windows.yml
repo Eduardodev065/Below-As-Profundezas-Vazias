@@ -23,7 +23,7 @@ jobs:
       - name: Prepare bundled Python, Java and game engine
         shell: pwsh
         run: |
-          New-Item -ItemType Directory -Force runtime/python, runtime/java, runtime/classes | Out-Null
+          New-Item -ItemType Directory -Force runtime/python, runtime/classes | Out-Null
           $py = Join-Path $env:RUNNER_TEMP 'python-embed.zip'
           Invoke-WebRequest 'https://www.python.org/ftp/python/3.12.10/python-3.12.10-embed-amd64.zip' -OutFile $py
           Expand-Archive $py runtime/python -Force
