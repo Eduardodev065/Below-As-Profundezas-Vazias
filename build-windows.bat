@@ -8,7 +8,7 @@ where jlink >nul 2>nul || (echo jlink nao encontrado. Instale um JDK completo.& 
 
 if not exist runtime\python\python.exe (
   if not exist runtime\python mkdir runtime\python
-  powershell -NoProfile -ExecutionPolicy Bypass -Command "$ProgressPreference='SilentlyContinue'; Invoke-WebRequest 'https://www.python.org/ftp/python/3.12.10/python-3.12.10-embed-amd64.zip' -OutFile '%TEMP%\below-python.zip'; Expand-Archive '%TEMP%\below-python.zip' 'runtime\python' -Force; $p=Get-ChildItem runtime\python\*._pth | Select-Object -First 1; (Get-Content $p.FullName) -replace '^#import site','import site' | Set-Content $p.FullName"
+  powershell -NoProfile -ExecutionPolicy Bypass -Command "$ProgressPreference='SilentlyContinue'; Invoke-WebRequest 'https://www.python.org/ftp/python/3.12.10/python-3.12.10-embed-amd64.zip' -OutFile '%TEMP%\below-python.zip'; Expand-Archive '%TEMP%\below-python.zip' 'runtime\python' -Force; $p=Get-ChildItem runtime\python\*._pth | Select-Object -First 1; $content=(Get-Content $p.FullName -Raw) -replace '^#import site','import site'; [IO.File]::WriteAllText($p.FullName,$content,[Text.Encoding]::ASCII)"
   if errorlevel 1 exit /b 1
 )
 

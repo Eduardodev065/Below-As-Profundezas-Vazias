@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const { spawn, execFile } = require('child_process');
 let win;
-let python, java;
+let java;
 let nextId = 1;
 const pending = new Map();
 function runtimePath(...parts) {
@@ -59,8 +59,8 @@ ipcMain.handle('boss-tick', (_event, state) => new Promise(resolve => {
   const id = String(nextId++); pending.set(id, resolve);
   const values = [id, state.key, state.kind, state.x, state.y, state.px, state.py, state.depth, state.dt].map(v => String(v).replace(/[|\r\n]/g, ''));
   java.stdin.write(values.join('|') + '\n', err => { if (err) { pending.delete(id); resolve(null); } });
-  setTimeout(() => { if (pending.delete(id)) resolve(null); }, 80);
+  setTimeout(() => { if (pending.delete(id)) resolve(null); }, 500);
 }));
 app.whenReady().then(() => { startEngine(); create(); });
-app.on('before-quit', () => { if (java) java.kill(); if (python) python.kill(); });
+app.on('before-quit', () => { if (java) java.kill(); });
 app.on('window-all-closed', () => app.quit());
